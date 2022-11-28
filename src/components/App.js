@@ -86,7 +86,7 @@ const App = () => {
             autoComplete="off"
             type="search"
             name="search"
-            placeholder="Filtrar adalabers por nombre"
+            placeholder=" Filtrar adalabers por nombre"
             onInput={handleSearch}
             value={search}
           />
@@ -98,8 +98,8 @@ const App = () => {
             onChange={handleChangeCounselor}
             value={searchCounselor}
           >
-            <option value="select">Escoge a una tutora</option>
-            <option value="ivan">Iván</option>
+            <option value="">Escoge a una tutora</option>
+            <option value="iván">Iván</option>
             <option value="dayana"> Dayana</option>
             <option value="yanelis">Yanelis</option>
           </select>
@@ -107,9 +107,9 @@ const App = () => {
         <table className="table">
           <thead>
             <tr className="row">
-              <th className="column list ">Nombre</th>
-              <th className="column list">Tutora</th>
-              <th className="column list">Especialidad</th>
+              <th className="column list "> Nombre </th>
+              <th className="column list"> Tutora </th>
+              <th className="column list"> Especialidad </th>
             </tr>
           </thead>
 
@@ -123,7 +123,7 @@ const App = () => {
             type="text"
             name="name"
             id="name"
-            placeholder="Nombre"
+            placeholder=" Nombre"
             onInput={handleNewStudents}
             value={newStudents.name}
           />
@@ -132,7 +132,7 @@ const App = () => {
             type="text"
             name="counselor"
             id="counselor"
-            placeholder="Tutora"
+            placeholder=" Tutora"
             onInput={handleNewStudents}
             value={newStudents.counselor}
           />
@@ -141,7 +141,7 @@ const App = () => {
             type="text"
             name="speciality"
             id="speciality"
-            placeholder="especialidad"
+            placeholder=" Especialidad"
             onInput={handleNewStudents}
             value={newStudents.speciality}
           />
