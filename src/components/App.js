@@ -8,9 +8,25 @@ import { useState } from "react";
 const App = () => {
   // Estados
   const [data, setData] = useState(contacts);
-  console.log(data);
+  const [newStudents, setNewStudents] = useState({
+    name: "",
+    counselor: "",
+    speciality: "",
+  });
 
-  // Eventos
+  // funciones Handle
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const handleNewStudents = (ev) => {
+    setNewStudents({ ...newStudents, [ev.target.id]: ev.target.value });
+  };
+
+  const handleClick = (ev) => {
+    ev.preventDefault();
+    setData([...data, newStudents]);
+  };
 
   // Funciones de renderizado
   const htmlData = data.map((students, id) => {
@@ -25,7 +41,7 @@ const App = () => {
 
   return (
     <div>
-      <h1 className="tittle"> Alumnas Adalabers</h1>
+      <h1 className="tittle"> Adalabers</h1>
       <table className="table">
         {/* <!-- Fila de cabecera --> */}
         <thead>
@@ -38,6 +54,40 @@ const App = () => {
         {/* <!-- Fin fila de cabecera --> */}
         <tbody> {htmlData}</tbody>
       </table>
+      {/* new contact */}
+      <form className="new-contact__form" onSubmit={handleSubmit}>
+        <h2 className="new-contact__title">Añade un nuevo contacto</h2>
+        <input
+          className="new-contact__input"
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Nombre"
+          onInput={handleNewStudents}
+          value={newStudents.name}
+        />
+        <input
+          className="new-contact__input"
+          type="text"
+          name="counselor"
+          id="counselor"
+          placeholder="Tutora"
+          onInput={handleNewStudents}
+          value={newStudents.counselor}
+        />
+        <input
+          className="new-contact__input"
+          type="text"
+          name="speciality"
+          id="speciality"
+          placeholder="especialidad"
+          onInput={handleNewStudents}
+          value={newStudents.speciality}
+        />
+      </form>
+      <button className="button" onClick={handleClick}>
+        Añadir
+      </button>
     </div>
   );
 };
