@@ -17,6 +17,7 @@ const App = () => {
   });
 
   const [search, setSearch] = useState("");
+  const [searchCounselor, setSearchCounselor] = useState("");
 
   // funciones Handle
   const handleSubmit = (event) => {
@@ -34,23 +35,36 @@ const App = () => {
   const handleSearch = (ev) => {
     setSearch(ev.target.value);
   };
+  const handleChangeCounselor = (ev) => {
+    setSearchCounselor(ev.target.value);
+  };
 
   // Funciones de renderizado
   const htmlData = data
-    .filter(
-      (students) =>
-        students.name.toLowerCase().includes(search.toLowerCase()) ||
-        students.lastname.toLowerCase().includes(search.toLowerCase())
+    .filter((students) =>
+      students.name.toLowerCase().includes(search.toLowerCase())
     )
+    .filter((students) =>
+      students.counselor.toLowerCase().includes(searchCounselor.toLowerCase())
+    )
+
     .map((students, id) => {
       return (
-        <tr key={id}>
+        <tr key={students.id}>
           <td className="students">{students.name}</td>
           <td className="teacher">{students.counselor}</td>
           <td className="speciality">{students.speciality}</td>
         </tr>
       );
     });
+  // const filterAdalabers = data.filter(eachAdalaber) => (
+  //   if (counselorFilter === ""){
+  //     return true;
+  //   }
+
+  // ) else {
+  //   return eachAdalaber.counselor === counselorFilter
+  // }
 
   return (
     <div>
@@ -58,7 +72,7 @@ const App = () => {
         <h1 className="tittle"> Adalabers</h1>
       </header>
       <main>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             className="search"
             autoComplete="off"
@@ -68,15 +82,19 @@ const App = () => {
             onInput={handleSearch}
             value={search}
           />
-          <input
-            className="search"
-            autoComplete="off"
-            type="search"
-            name="search"
-            placeholder="Filtrar tutores por nombre"
-            onInput={handleSearch}
-            value={search}
-          />
+
+          <select
+            className=""
+            name="searchCounselor"
+            id="seasearchCounselorrch"
+            onChange={handleChangeCounselor}
+            value={searchCounselor}
+          >
+            <option value="select">Escoge a una tutora</option>
+            <option value="ivan">Iván</option>
+            <option value="dayana"> Dayana</option>
+            <option value="yanelis">Yanelis</option>
+          </select>
         </form>
         <table className="table">
           <thead>
