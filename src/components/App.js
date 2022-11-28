@@ -8,10 +8,12 @@ import { useState } from "react";
 const App = () => {
   // Estados
   const [data, setData] = useState(contacts);
+  console.log(data);
   const [newStudents, setNewStudents] = useState({
     name: "",
     counselor: "",
     speciality: "",
+    id: crypto.randomUUID(),
   });
 
   // funciones Handle
@@ -43,7 +45,6 @@ const App = () => {
     <div>
       <h1 className="tittle"> Adalabers</h1>
       <table className="table">
-        {/* <!-- Fila de cabecera --> */}
         <thead>
           <tr>
             <th>Nombre</th>
@@ -51,10 +52,10 @@ const App = () => {
             <th>Especialidad</th>
           </tr>
         </thead>
-        {/* <!-- Fin fila de cabecera --> */}
+
         <tbody> {htmlData}</tbody>
       </table>
-      {/* new contact */}
+
       <form className="new-contact__form" onSubmit={handleSubmit}>
         <h2 className="new-contact__title">Añade un nuevo contacto</h2>
         <input
