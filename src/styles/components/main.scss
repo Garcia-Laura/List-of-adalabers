@@ -1,0 +1,44 @@
+.search {
+  border: 3px solid cadetblue;
+  width: 300px;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+.table {
+  margin: 15px;
+  margin-left: 30px;
+  margin-right: 100px;
+}
+.row,
+.column {
+  border: 1px solid cadetblue;
+  padding: 10px;
+  width: 50%;
+}
+.list {
+  color: rgb(148, 95, 27);
+}
+
+.new-contact__title {
+  background-color: cadetblue;
+  color: white;
+  width: 40%;
+  text-align: center;
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+.new-contact__input {
+  margin-left: 30px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(148, 95, 27);
+}
+
+.button {
+  border: 3px solid rgb(148, 95, 27);
+  color: rgb(148, 95, 27);
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}

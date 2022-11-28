@@ -2,7 +2,8 @@
 
 import "../styles/App.scss";
 import contacts from "../data/contacts.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import getAdalabers from "../services/api";
 // import ls from "../data/localstorage.js";
 
 const App = () => {
@@ -18,6 +19,13 @@ const App = () => {
 
   const [search, setSearch] = useState("");
   const [searchCounselor, setSearchCounselor] = useState("");
+
+  //UseEffect
+  useEffect(() => {
+    getAdalabers().then((da) => {
+      setData(da.results);
+    });
+  }, []);
 
   // funciones Handle
   const handleSubmit = (event) => {
@@ -50,10 +58,10 @@ const App = () => {
 
     .map((students, id) => {
       return (
-        <tr key={students.id}>
-          <td className="students">{students.name}</td>
-          <td className="teacher">{students.counselor}</td>
-          <td className="speciality">{students.speciality}</td>
+        <tr className="row" key={students.id}>
+          <td className="column">{students.name}</td>
+          <td className="column">{students.counselor}</td>
+          <td className="column">{students.speciality}</td>
         </tr>
       );
     });
@@ -84,7 +92,7 @@ const App = () => {
           />
 
           <select
-            className=""
+            className="search"
             name="searchCounselor"
             id="seasearchCounselorrch"
             onChange={handleChangeCounselor}
@@ -98,10 +106,10 @@ const App = () => {
         </form>
         <table className="table">
           <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Tutora</th>
-              <th>Especialidad</th>
+            <tr className="row">
+              <th className="column list ">Nombre</th>
+              <th className="column list">Tutora</th>
+              <th className="column list">Especialidad</th>
             </tr>
           </thead>
 
@@ -137,10 +145,10 @@ const App = () => {
             onInput={handleNewStudents}
             value={newStudents.speciality}
           />
+          <button className="button" onClick={handleClick}>
+            Añadir
+          </button>
         </form>
-        <button className="button" onClick={handleClick}>
-          Añadir
-        </button>
       </main>
     </div>
   );
