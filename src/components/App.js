@@ -70,9 +70,9 @@ const App = () => {
           <td className="column">{students.counselor}</td>
           <td className="column">{students.speciality}</td>
           <td className="column">
-            {students.social_networks.map((red) => {
+            {students.social_networks.map((red, i) => {
               return (
-                <a className="netSocial" href={red.url}>
+                <a key={i} className="netSocial" href={red.url}>
                   {red.name}
                 </a>
               );
