@@ -40,6 +40,12 @@ const App = () => {
   const handleClick = (ev) => {
     ev.preventDefault();
     setData([...data, newStudents]);
+    setNewStudents({
+      name: "",
+      counselor: "",
+      speciality: "",
+      social_networks: "",
+    });
   };
   const handleSearch = (ev) => {
     setSearch(ev.target.value);
