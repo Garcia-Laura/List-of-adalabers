@@ -3,7 +3,7 @@
 import "../styles/App.scss";
 import contacts from "../data/contacts.json";
 import { useEffect, useState } from "react";
-import getAdalabers from "../services/api";
+// import getAdalabers from "../services/api";
 // import ls from "../data/localstorage.js";
 
 const App = () => {
@@ -11,21 +11,22 @@ const App = () => {
   const [data, setData] = useState(contacts.results);
 
   const [newStudents, setNewStudents] = useState({
+    id: crypto.randomUUID(),
     name: "",
     counselor: "",
     speciality: "",
-    id: crypto.randomUUID(),
+    social_networks: [],
   });
 
   const [search, setSearch] = useState("");
   const [searchCounselor, setSearchCounselor] = useState("");
 
   //UseEffect
-  useEffect(() => {
-    getAdalabers().then((da) => {
-      setData(da.results);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getAdalabers().then((da) => {
+  //     setData(da.results);
+  //   });
+  // }, []);
 
   // funciones Handle
   const handleSubmit = (event) => {
@@ -62,17 +63,18 @@ const App = () => {
           <td className="column">{students.name}</td>
           <td className="column">{students.counselor}</td>
           <td className="column">{students.speciality}</td>
+          <td className="column">
+            {students.social_networks.map((red) => {
+              return (
+                <a className="netSocial" href={red.url}>
+                  {red.name}
+                </a>
+              );
+            })}
+          </td>
         </tr>
       );
     });
-  // const filterAdalabers = data.filter(eachAdalaber) => (
-  //   if (counselorFilter === ""){
-  //     return true;
-  //   }
-
-  // ) else {
-  //   return eachAdalaber.counselor === counselorFilter
-  // }
 
   return (
     <div>
@@ -110,10 +112,11 @@ const App = () => {
               <th className="column list "> Nombre </th>
               <th className="column list"> Tutora </th>
               <th className="column list"> Especialidad </th>
+              <th className="column list">Redes sociales</th>
             </tr>
           </thead>
 
-          <tbody> {htmlData}</tbody>
+          <tbody>{htmlData}</tbody>
         </table>
 
         <form className="new-contact__form" onSubmit={handleSubmit}>
@@ -145,8 +148,17 @@ const App = () => {
             onInput={handleNewStudents}
             value={newStudents.speciality}
           />
+          <input
+            className="new-contact__input"
+            type="text"
+            name="networks"
+            id="networks"
+            placeholder=" Redes sociales"
+            onInput={handleNewStudents}
+            value={newStudents.social_networks}
+          />
           <button className="button" onClick={handleClick}>
-            Añadir
+            Añadir nueva adalaber
           </button>
         </form>
       </main>
