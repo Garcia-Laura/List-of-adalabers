@@ -1,15 +1,15 @@
 // Fichero src/components/App.js
 
 import "../styles/App.scss";
-import contacts from "../data/contacts.json";
+// import contacts from "../data/contacts.json";
 import { useEffect, useState } from "react";
-// import getAdalabers from "../services/api";
+import getAdalabers from "../services/api";
 // import ls from "../data/localstorage.js";
 
 const App = () => {
   // Estados
-  const [data, setData] = useState(contacts.results);
-
+  const [data, setData] = useState([]);
+  console.log(data);
   const [newStudents, setNewStudents] = useState({
     id: crypto.randomUUID(),
     name: "",
@@ -21,12 +21,13 @@ const App = () => {
   const [search, setSearch] = useState("");
   const [searchCounselor, setSearchCounselor] = useState("");
 
-  //UseEffect
-  // useEffect(() => {
-  //   getAdalabers().then((da) => {
-  //     setData(da.results);
-  //   });
-  // }, []);
+  // UseEffect;
+  useEffect(() => {
+    getAdalabers().then((dat) => {
+      console.log(dat);
+      setData(dat.results);
+    });
+  }, []);
 
   // funciones Handle
   const handleSubmit = (event) => {
